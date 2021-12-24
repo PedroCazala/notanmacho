@@ -1,10 +1,20 @@
+.menu{
+    top:0;
+    background-color: white;
+    display: grid;
+    
+    grid-template-columns: 1fr 6fr 1fr;
+}
 nav > ul{
     list-style: none;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
 }
-
+/* nav > ul > li:hover{
+    background-color: black;
+    color: white;
+} */
 nav > ul > li > ul >ul{
     list-style: none;
 }
@@ -17,4 +27,8 @@ nav > ul > li > ul >ul{
 }
 .tituloUl{
     font-weight: bold;
+}
+.logo-notanmacho{
+    font-size: 1.5rem;
+    max-width: auto;
 }

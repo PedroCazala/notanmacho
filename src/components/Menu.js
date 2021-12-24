@@ -1,10 +1,13 @@
 import React from 'react'
+import CartWidget from './CartWidget'
+
 /*const catalogo = document.getElementById('menu-catalogo')
 const catalogoDesplegable = document.getElementById('menu-catalogo-desplegable')
 catalogo.addEventListener(hover, () => catalogoDesplegable)*/
 function Menu() {
     return (
-        <div>
+        <div className='menu'>
+            <p className='logo-notanmacho'>No Tan MACHO</p>
             <nav>
                 <ul>
                     <li className="menu-catalogo">Catálogo
@@ -47,7 +50,7 @@ function Menu() {
                     <li>Descuentos</li>
                 </ul>
             </nav>
-
+            <CartWidget/>
         </div>
     )
 }
