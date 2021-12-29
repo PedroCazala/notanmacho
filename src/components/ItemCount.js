@@ -4,20 +4,19 @@ import {useState} from 'react'
 function ItemCount({stock, initial, onAdd}) {
     const [contador, setContador] = useState(initial);
 
+    const restar = () =>{
+        contador > initial && setContador(contador-1)
+    }
+
+    const sumar = () =>{
+        contador < stock ? setContador(contador+1) : alert(onAdd)
+    }
+
     return (
         <div>
             <div>{contador}</div>
-            <buttom onClick={()=>{
-                if(contador > 0){
-                    setContador(contador-1)
-                    }
-                }}>-</buttom>
-            <buttom onClick={()=>{
-                if(contador < stock){
-                    setContador(contador+1)}else{
-                        alert(onAdd)
-                    }
-                    }}>+</buttom>
+            <buttom onClick={restar}>-</buttom>
+            <buttom onClick={sumar}>+</buttom>
         </div>
     )
 }
