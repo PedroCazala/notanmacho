@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Menu/>
       <ItemListContainer greeting="Hola soy Item List Container"/>
-      <ItemCount stock={20} initial={1} onAdd={'Ya no tenemos estock de este producto'}/>
+      <ItemCount stock={20} initial={1} onAdd={'Ya no tenemos stock de este producto'}/>
     </div>
   );
 }

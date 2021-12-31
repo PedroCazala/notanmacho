@@ -1,5 +1,7 @@
 @import 'components/Menu.css';
 @import 'components/Logo.css'; 
+@import 'components/Item/item.css';
+@import 'components/Item/itemList.css';
 
 * {
   margin: 0;
