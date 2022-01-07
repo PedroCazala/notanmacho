@@ -1,9 +1,13 @@
+
 .menu{
     top:0;
     background-color: white;
     display: grid;
-    
+    align-items: center;
     grid-template-columns: 1fr 6fr 1fr;
+    width:100%;
+    font-size: 1.5rem;
+    border-bottom: 1px gray solid;
 }
 nav > ul{
     list-style: none;
@@ -19,12 +23,7 @@ nav > ul > li > ul >ul{
     list-style: none;
 }
 
-.menu-catalogo-desplegable{
-    display: none;
-}
-.menu-catalogo:hover .menu-catalogo-desplegable{
-    display: inline;
-}
+
 .tituloUl{
     font-weight: bold;
 }

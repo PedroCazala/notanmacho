@@ -1,0 +1,32 @@
+.menuDesplegable{
+    width: 100%;
+    // background-color:gray;
+    display:flex;
+    div{
+        display:flex;
+        width: 100%;
+        ul{
+            list-style: none;
+        }
+    }
+
+}
+@media only screen and (max-width: 550px) {
+
+}
+
+@media only screen and (min-width: 551px) and (max-width: 1023px){
+
+}
+@media only screen and (min-width: 1024px){
+    .menuDesplegable{
+        height: 40vh;
+        flex-flow:row;
+        justify-content: space-around;
+        font-size: 1.5rem;
+        div{
+            flex-flow:row wrap;
+            justify-content: space-around;
+        }
+    }
+}

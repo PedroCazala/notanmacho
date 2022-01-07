@@ -16,9 +16,9 @@ function ItemListContainer({greeting}) {
     console.log(productos)
     return (
         <div>
-            <h1>
+            <center><h1>
                 {greeting}
-            </h1>
+            </h1></center>
             {loading ? <img src={loadingImg} alt="Rueda de cargando" />
             :
             <ItemList productos={productos}/>}

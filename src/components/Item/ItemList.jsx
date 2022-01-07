@@ -6,7 +6,7 @@ import Item from './Item'
 function ItemList({productos}) {
     return (
         <div className='itemList'>
-            {productos.map(producto=><Item prod={producto}/>)}
+            {productos.map(producto=><Item key={producto.id} prod={producto}/>)}
         </div>
     )
 }

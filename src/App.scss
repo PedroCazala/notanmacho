@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import 'components/menu/menu.scss';
+@import 'components/menu/menuDesplegable.scss';
+@import 'components/menu/Logo.scss'; 
+@import 'components/Item/item.scss';
+@import 'components/Item/itemList.scss';
+
+header{
+  position: sticky;
+}
+
+
+
+.App {
+  text-align: center;
+}
+body {
+  background-color:white;
+  // rgb(195, 195, 195);
+  font-size: 1rem;
+}
