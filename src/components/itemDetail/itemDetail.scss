@@ -1,0 +1,19 @@
+.itemDetail{
+    display: grid;
+    grid-template-areas: 
+    "titulo titulo"
+    "img aside";
+    align-items: center;
+
+    .titulo{
+        grid-area: titulo;
+        text-align: center;
+    }
+    .imagen{grid-area:img;}
+    .aside{grid-area: aside;}
+
+    img{
+        max-width: 600px;
+        max-height: auto;
+    }
+}

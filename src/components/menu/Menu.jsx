@@ -18,7 +18,7 @@ function Menu() {
                 </nav>
                 <Link to='/carrito' ><CartWidget/></Link>
             </div>
-            <MenuDesplegableCatalogo/>
+            {/* <MenuDesplegableCatalogo/> */}
         </header>
     )
 }

@@ -1,11 +1,11 @@
 import {React,useEffect,useState} from 'react'
 import { getFetch } from '../../helpers/mock'
-import ItemList from '../Item/ItemList'
+import ItemList from './ItemList'
 import loadingImg from '../../assets/images/logos/loading_gif.gif'
 
 function ItemListContainer({greeting}) {
     const [productos, setProductos] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     
     useEffect(()=>{
         getFetch
@@ -13,7 +13,6 @@ function ItemListContainer({greeting}) {
         .catch(err=>console.log(err))
         .finally(()=>setLoading(false))
     },[])
-    console.log(productos)
     return (
         <div>
             <center><h1>

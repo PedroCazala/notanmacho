@@ -5,7 +5,7 @@ import React from 'react'
 function Item({prod}) {
     return (
         <div className='item'>
-            <img src={prod.img1} alt="" />
+            <img src={prod.img1} alt={prod.nombre} />
             <h3>{prod.nombre}</h3>
             <p>${prod.precio}</p>
         </div>
