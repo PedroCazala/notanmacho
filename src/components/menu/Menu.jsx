@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CartWidget from './CartWidget'
-import MenuDesplegableCatalogo from './MenuDesplegableCatalogo'
+import MenuDesplegable from './menuDesplegable/MenuDesplegable'
+import MenuSeccionCategoria from './menuDesplegable/MenuSeccionCategoria'
 
 
 function Menu() {
@@ -18,7 +19,7 @@ function Menu() {
                 </nav>
                 <Link to='/carrito' ><CartWidget/></Link>
             </div>
-            {/* <MenuDesplegableCatalogo/> */}
+            <MenuDesplegable contenido={<MenuSeccionCategoria/>}/>
         </header>
     )
 }

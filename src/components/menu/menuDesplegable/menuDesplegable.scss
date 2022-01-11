@@ -7,9 +7,28 @@
         width: 100%;
         ul{
             list-style: none;
+            font-size: 1.3rem;
+            li{
+                &:hover{
+                    transform: scale(1.05);
+                }
+                a{
+                    color: black;
+                    opacity: .8;
+                    text-decoration: none;
+                    &:hover{
+                        opacity: 1;
+                    }
+                }
+                .titulo{
+                    font-weight: bold;
+                }
+                .active{
+                    color: red;
+                }
+            }
         }
     }
-
 }
 @media only screen and (max-width: 550px) {
 

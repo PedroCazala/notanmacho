@@ -1,7 +1,11 @@
 import React from 'react'
-import MenuDesplegable from './MenuDesplegable'
-const contenido =
-<div>
+import MenuDesplegable from './menuDesplegable/MenuDesplegable'
+import { categorias } from './menuDesplegable/categorias';
+import MenuSeccionCategoria from './menuDesplegable/MenuSeccionCategoria';
+// const contenido = ()=>{
+//     return 
+// }
+{/* <div>
     <ul>
         <li className="tituloUl">Ropa</li>
         <li>Remeras</li>
@@ -34,12 +38,19 @@ const contenido =
         <li>Billeteras</li>
         <li>Riñoneras</li>
     </ul>
-</div>;
+</div>; */}
 
 function MenuDesplegableCatalogo() {
     return (
         <div>
-            <MenuDesplegable contenido={contenido}/>
+            {/* <MenuDesplegable contenido={contenido}/> */}
+            {/* lalala
+            {categorias.map(categoria=>{
+                return(
+            <h1 key={categoria.categoria}>{categoria.categoria}</h1>
+                )
+            })} */}
+            <MenuSeccionCategoria/>
         </div>
     )
 }
