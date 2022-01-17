@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import './itemCount.scss'
 
 function ItemCount({stock, initial, onAdd}) {
     const [contador, setContador] = useState(initial);
@@ -9,14 +10,18 @@ function ItemCount({stock, initial, onAdd}) {
     }
 
     const sumar = () =>{
-        contador < stock ? setContador(contador+1) : alert(onAdd)
+        contador < stock ? setContador(contador+1) : alert('No hay suficientes productos en stock')
     }
 
     return (
-        <div>
+        <div className='itemCount'>
             <div>{contador}</div>
-            <buttom onClick={restar}>-</buttom>
-            <buttom onClick={sumar}>+</buttom>
+            <div className='sumarRestar'>
+                <button onClick={restar}>-</button>
+                <button onClick={sumar}>+</button>
+            </div>
+            <p>(Disponibles {stock})</p>
+            <button onClick={onAdd}>Agregar al carrito</button>
         </div>
     )
 }

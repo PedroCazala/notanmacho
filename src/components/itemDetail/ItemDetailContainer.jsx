@@ -13,7 +13,7 @@ function ItemDetailContainer() {
     useEffect(()=>{
         if(idDetalle){
             getFetch
-            .then(res=>{setProducto(res.find(producto =>producto.id + producto.nombre === idDetalle))})
+            .then(res=>{setProducto(res.find(producto => producto.id + producto.nombre === idDetalle))})
             .catch(err=>{console.log(err)})
             .finally(()=>{setLoading(false)})
         }else{
@@ -22,14 +22,8 @@ function ItemDetailContainer() {
             .catch(err=>{console.log(err)})
             .finally(()=>{setLoading(false)})
         }
-    },[])
+    },[idDetalle])
 
-    
-    console.log('productos del contenedor del detail:')
-    console.log(producto)
-    //FUNCIONA:
-    // const roma = producto.find(producto =>producto.id === '1')
-    // console.log(roma)
 
     return (
         <div>
