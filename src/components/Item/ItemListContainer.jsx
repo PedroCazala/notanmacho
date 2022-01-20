@@ -8,10 +8,9 @@ function ItemListContainer({greeting}) {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const {categoria} = useParams()
+    // const {categoria} = useParams()
     const {subcategoria} = useParams()
-    console.log(categoria);
-    console.log(subcategoria);
+
     useEffect(()=>{
         if(subcategoria){
             getFetch
