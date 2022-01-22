@@ -10,7 +10,7 @@ const productos = [
 
     {id:'2',
     nombre:'Remera Verde',
-    precio:230,
+    precio:400,
     img1:'/assets/productos/remeraVerde.jpg',
     img2:'f',
     categoria:'remeras',
@@ -18,7 +18,7 @@ const productos = [
 
     {id:'3',
     nombre:'Pantalon Babucha',
-    precio:250,
+    precio:360,
     img1:'/assets/productos/pantalonBabucha.jpg',
     img2:'f',
     categoria:'pantalones',

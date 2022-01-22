@@ -7,6 +7,7 @@
 @import 'components/menu/Logo.scss'; 
 @import 'components/Item/item.scss';
 @import 'components/Item/itemList.scss';
+@import 'styles/botones.scss';
 
 header{
   position: sticky;
@@ -20,5 +21,5 @@ header{
 body {
   background-color:white;
   // rgb(195, 195, 195);
-  font-size: 1rem;
+  font-size: 1.5rem;
 }

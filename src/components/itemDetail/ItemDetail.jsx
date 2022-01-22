@@ -25,14 +25,14 @@ function ItemDetail({producto}) {
             <div className='aside'>
                 <h2>${producto.precio}</h2>
                 {show ? 
-                        <ItemCount stock={producto.stock} initial={1} cantidad={(cant)=>onAdd(cant)}/>
+                        <ItemCount stock={producto.stock} initial={1} cantidadEnDetail={(cant)=>onAdd(cant)}/>
                     :
-                        <div>
+                        <div className='divBotones'>
                             <Link to='/carrito'>
-                                <button>Ir al Carrito</button>
+                                <button className='boton2'>Ir al Carrito</button>
                             </Link>
                             <Link to='/'>
-                                <button>Seguir comprando</button>
+                                <button className='boton2'>Seguir comprando</button>
                             </Link>
                         </div>
                 }

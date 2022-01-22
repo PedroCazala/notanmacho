@@ -1,40 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const CartContext = createContext ([])
 
+export const useCartContext=()=>{
+    return useContext(CartContext) 
+}
 
 export const CartContexProvider = ({children})=>{
     //Estados y funciones
     const [cartList, setCartList] = useState([])
 
-    const isInCart = (idProd)=>{
-        if(cartList.find(producto=>producto.id === idProd)){
-            return true
-        }
-        else{
-            return false
-        }
-    }
+
 
     const agregarAlCarrito = (items)=>{
-        // console.log('isInCart',isInCart(items.id));
-        // if(isInCart(items.id)){
-            
-
-        //     setCartList( 
-        //         cartList.map((productoEnCart)=>{
-        //             if(items.id === productoEnCart.id){
-        //                 console.log('modicacion de productoEnCart')
-        //                 console.log('modicacion de productoEnCart', productoEnCart)
-        //                 return {...items, cantidad: items.cantidad+productoEnCart.cantidad}
-        //             }else{
-        //                 console.log('Se agregó de producto')
-        //                 console.log('Se agregó de producto', productoEnCart)
-        //                 return items
-        //             }
-        //         })
-        //     )
-        // }
         const productoAModificar =cartList.find(producto=>producto.id === items.id)
         const productosQueQuedan =cartList.filter(producto=>producto.id !== items.id)
         if(productoAModificar){
@@ -49,18 +27,35 @@ export const CartContexProvider = ({children})=>{
             console.log('un producto que no estaba');
         }
     }
-    console.log(cartList);
+    const modificarEnCarrito = (contador,id)=>{
+        let cantidadNueva = contador
+        let array2 = cartList.map((producto)=>{
+            if(producto.id ===id){
+                return {...producto,cantidad:cantidadNueva}
+            }else{
+                return producto
+            }
+        })
+        setCartList(array2)
+    }
+
 
     const vaciarCarrito = ()=>{
         setCartList([])
     }
 
+    const eliminarItemDelCarrito = (items)=>{
+        let quedan = cartList.filter(producto=>producto.id !== items.id)
+        setCartList(quedan)
+    }
     return(
         <CartContext.Provider value={{
             cartList,
             agregarAlCarrito,
             vaciarCarrito,
-            isInCart
+            eliminarItemDelCarrito,
+            modificarEnCarrito
+            // isInCart
         }}>
             {children}
         </CartContext.Provider>

@@ -1,0 +1,39 @@
+.boton1{
+    font-size:1.5rem;
+    padding: 5px;
+    border-radius: 12px;
+    border: none;
+    background-color: white;
+    color: #e71d36;
+    &:active{
+        background-color: #e71d36;
+        color: black;
+        transform: scale(.8);
+    }
+}
+.boton1{
+    font-size:1.5rem;
+    padding: 5px;
+    border-radius: 12px;
+    border: none;
+    background-color: black;
+    color: #e71d36;
+    &:active{
+        background-color: #e71d36;
+        color: black;
+        transform: scale(.8);
+    }
+}
+.boton2{
+    font-size:1.5rem;
+    padding: 5px;
+    border-radius: 12px;
+    border: none;
+    background-color: white;
+    color: #e71d36;
+    &:active{
+        background-color: #e71d36;
+        color: black;
+        transform: scale(.9);
+    }
+}

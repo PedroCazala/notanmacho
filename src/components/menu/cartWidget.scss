@@ -1,0 +1,15 @@
+.cartWidget{
+    text-decoration: none;
+    position: relative;
+    .cantidaEnCarrito{
+        transform: translate(32px, -60px);
+        position: absolute;
+        background-color: black;
+        color: white;
+        border-radius: 100px;
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+    }
+
+}

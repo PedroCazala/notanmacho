@@ -1,0 +1,49 @@
+.itemCart{
+    background-color: pink;
+    margin: 10px auto;
+    padding: 15px;
+    width: 85vw;
+    border-radius: 15px;
+
+    display: grid;
+    grid-template-areas: 
+    'img contenido';
+    grid-template-columns: 2fr 8fr;
+
+    img{
+        grid-area: img;
+        width: 20vw;
+        height: 20vw;
+        object-fit:cover;
+    }
+    .contenido{
+        grid-area: contenido;
+        text-align: center;
+        display: grid;
+        grid-template-areas: 
+        "titulo titulo titulo titulo"
+        "precio contador total botones"
+        ;
+        align-items: center;
+
+        .titulo{
+            grid-area: titulo;
+            font-size: 2.5rem;
+            background-color: rgb(255, 0, 179);
+            color: white;
+            border-radius: 20px;
+            margin: auto;
+            padding: 15px;
+        }
+        .precio{
+            grid-area: precio;
+        }
+        .total{
+            grid-area: total;
+        }
+        .botones{
+            grid-area: botones;
+        }
+
+    }
+}

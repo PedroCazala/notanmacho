@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import './itemCount.scss'
 
-function ItemCount({stock, initial, cantidad}) {
+function ItemCount({stock, initial, cantidadEnDetail}) {
     const [contador, setContador] = useState(initial);
     
     const restar = () =>{
@@ -20,8 +20,12 @@ function ItemCount({stock, initial, cantidad}) {
                 <button onClick={restar}>-</button>
                 <button onClick={sumar}>+</button>
             </div>
-            <p>(Disponibles {stock})</p>
-            <button onClick={()=>cantidad(contador)}>Agregar al carrito</button>
+            {cantidadEnDetail &&
+                <>
+                    <p>(Disponibles {stock})</p>
+                    <button className='boton2' onClick={()=>cantidadEnDetail(contador)}>Agregar al carrito</button>
+                </>
+            }
         </div>
     )
 }
