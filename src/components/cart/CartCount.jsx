@@ -9,15 +9,16 @@ function ItemCount({producto}) {
 
 
     const restar = () =>{
-        contador > 1 && 
+        if(contador > 1){
+        modificarEnCarrito(contador-1,producto.id)
         setContador(contador-1)
-        modificarEnCarrito(contador,producto.id)
+        }
     }
 
     const sumar = () =>{
         if(contador < producto.stock){
+            modificarEnCarrito(contador+1,producto.id)
             setContador(contador+1)
-            modificarEnCarrito(contador,producto.id)
         }else{
             alert('No hay suficientes productos en stock')
         }

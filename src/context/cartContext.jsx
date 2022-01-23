@@ -28,10 +28,9 @@ export const CartContexProvider = ({children})=>{
         }
     }
     const modificarEnCarrito = (contador,id)=>{
-        let cantidadNueva = contador
         let array2 = cartList.map((producto)=>{
             if(producto.id ===id){
-                return {...producto,cantidad:cantidadNueva}
+                return {...producto,cantidad:contador}
             }else{
                 return producto
             }
