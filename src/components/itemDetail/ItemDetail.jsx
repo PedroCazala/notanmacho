@@ -10,20 +10,19 @@ function ItemDetail({producto}) {
 
     const onAdd =(cant)=>{
         setShow (false)
-        console.log(cant);
         agregarAlCarrito({...producto, cantidad:cant});
     }
     
     return (
-        <div className='itemDetail'>
+        <div className='itemDetail' >
             <div className='titulo'>
-                <h1>{producto.nombre}</h1>
+                <h1>{producto.name}</h1>
             </div>
             <div className='imagen'>
-                <img src={producto.img1} alt={producto.nombre}/>
+                <img src={producto.img1} alt={producto.name}/>
             </div>
             <div className='aside'>
-                <h2>${producto.precio}</h2>
+                <h2>${producto.price}</h2>
                 {show ? 
                         <ItemCount stock={producto.stock} initial={1} cantidadEnDetail={(cant)=>onAdd(cant)}/>
                     :

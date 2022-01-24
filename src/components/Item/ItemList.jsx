@@ -8,7 +8,7 @@ function ItemList({productos}) {
     return (
         <div className='itemList'>
             {productos.map(producto=>
-            <Link to={`/detalle/${producto.id}${producto.nombre}`} key={producto.id}>
+            <Link to={`/detalle/${producto.id}`} key={producto.id}>
                 <Item prod={producto}/>
             </Link>)}
         </div>

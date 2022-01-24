@@ -8,15 +8,15 @@ function ItemCart({producto}) {
     const {eliminarItemDelCarrito} = useCartContext()
     return (
         <div  className='itemCart'>
-            <img src={producto.img1} alt={producto.nombre}/>
+            <img src={producto.img1} alt={producto.name}/>
             <div className='contenido'>
-                <div className='titulo'>{producto.nombre}</div>
-                <div className='precio'>${producto.precio}</div>
+                <div className='titulo'>{producto.name}</div>
+                <div className='precio'>${producto.price}</div>
                 <CartCount className='contador'producto={producto}/>
                 <div className='total'>
                     cantidad={producto.cantidad}
                     <br/>
-                    precio= ${producto.cantidad*producto.precio}
+                    precio= ${producto.cantidad*producto.price}
                 </div>
                 <div className='botones'>
                     <button className='boton2' onClick={()=>eliminarItemDelCarrito(producto)}>Eliminar Producto</button>

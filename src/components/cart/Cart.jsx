@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 
 function Cart() {
     const {cartList, vaciarCarrito} = useContext(CartContext)
+    console.log('cartList',cartList)
 
     return (
         <div>

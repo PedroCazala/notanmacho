@@ -4,7 +4,7 @@ import { CartContext } from '../../context/cartContext';
 function TotalCart() {
     const {cartList}=useContext(CartContext)
 
-    let arrayDeTotales = cartList.map(valor=>valor.precio*valor.cantidad)
+    let arrayDeTotales = cartList.map(valor=>valor.price*valor.cantidad)
     let total = arrayDeTotales.reduce((a,b)=>a+b)
 
     console.log(total);
