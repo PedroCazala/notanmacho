@@ -7,17 +7,18 @@ import { Link } from 'react-router-dom'
 
 
 function Cart() {
+    const [dataForm,setDataForm]=useState({
+        name:'',
+        phone:'',
+        email:''
+    })
     const {cartList, totalCart, vaciarCarrito,sumarTotalCart} = useContext(CartContext)
     // console.log('cartList',cartList)
     let orden = {}
     // const [productosTerminarCompra,setProductosTerminarCompra] = useState([])
-    const [pedido,setPedido] = useState({})
+    // const [pedido,setPedido] = useState({})
     const terminarCompra = async() =>{
-        orden.buyer ={
-            name:'pedro',
-            phone:2323252525,
-            email:'cazalapedro@gmail.com'
-        }
+        orden.buyer = dataForm;
         orden.total= totalCart;
 
         orden. items = cartList.map(producto => {
@@ -42,6 +43,15 @@ function Cart() {
         .finally(()=>console.log('cargando'))
         }
 
+    const handleChange =(e)=>{
+        // console.log('cambio', e.target.name);
+        // console.log('cambio', e.target.value);
+        setDataForm({
+            ...dataForm,
+            [e.target.name]:e.target.value
+        })
+    }
+    console.log(dataForm)
     return (
         <div>
             {cartList[0] ?
@@ -57,6 +67,40 @@ function Cart() {
                             {sumarTotalCart()}
                             <div>{totalCart}</div>
                             <button className='boton1 btnVaciarCarrito' onClick={vaciarCarrito}>Vaciar carrito</button>
+                            <form
+                                // onSubmit={realizarCompra}
+                            >
+                                
+                                <input 
+                                    type="text"
+                                    name='name'
+                                    placeholder='Nombre'
+                                    onChange={handleChange}
+                                    value={dataForm.name}
+                                /><br/>
+                                <input 
+                                    type="email"
+                                    name='email'
+                                    placeholder='e-mail'
+                                    onChange={handleChange}
+                                    value={dataForm.email}
+                                /><br/>
+                                {/* <input 
+                                    type="email"
+                                    name='emailConfirm'
+                                    placeholder='Confirme su e-mail'
+                                    onChange={handleChange}
+                                    //value=
+                                /><br/> */}
+                                <input 
+                                    type="phone"
+                                    name='phone'
+                                    placeholder='Telefono'
+                                    onChange={handleChange}
+                                    value={dataForm.phone}
+                                /><br/>
+
+                            </form>
                             <button className='boton1 ' onClick={terminarCompra}>Terminar compra</button>
                         </div>
                     }
