@@ -17,7 +17,8 @@ function Cart() {
     let orden = {}
     // const [productosTerminarCompra,setProductosTerminarCompra] = useState([])
     // const [pedido,setPedido] = useState({})
-    const terminarCompra = async() =>{
+    const terminarCompra = async(e) =>{
+        e.preventDefault()
         orden.buyer = dataForm;
         orden.total= totalCart;
 
@@ -40,7 +41,11 @@ function Cart() {
         await addDoc(ordenCollection, orden)
         .then(resp=>console.log(resp))
         .catch(err=>console.log(err))
-        .finally(()=>console.log('cargando'))
+        .finally(setDataForm({
+            name:'',
+            phone:'',
+            email:''
+        }))
         }
 
     const handleChange =(e)=>{
