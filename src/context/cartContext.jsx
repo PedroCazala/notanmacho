@@ -18,14 +18,26 @@ export const CartContexProvider = ({children})=>{
 
     const agregarAlCarrito = (items)=>{
         if(isInCart(items)){
-            let nuevoArray = []
-            cartList.forEach(
-                producto=>
-                    isInCart(items)?
-                        nuevoArray.push({...producto,cantidad:producto.cantidad+items.cantidad})
-                    :
-                    nuevoArray.push({producto})
-            )
+            let nuevoArray = cartList.map(
+                (producto)=>{
+                    console.log('itemsId',items.id)
+                    console.log('productoId',producto.id)
+                    if(items.id===producto.id){
+                        let cant=producto.cantidad + items.cantidad
+                        console.log(cant);
+                        return({...producto,cantidad:cant})
+                    }else{
+                        return({...producto})
+                    }
+            })
+            // cartList.forEach(
+            //     isInCart(items)?
+            //         producto=>
+            //             nuevoArray.push({...producto,cantidad:producto.cantidad+items.cantidad})
+            //             // console.log('entro al if')
+            //         :
+            //         producto=> nuevoArray.push({producto})
+            // )
             setCartList(nuevoArray)
         }
 
