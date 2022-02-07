@@ -17,49 +17,29 @@ export const CartContexProvider = ({children})=>{
 
 
     const agregarAlCarrito = (items)=>{
-
-        // if(isInCart(items)){
-        //     let array3= 
-        //     cartList.forEach(producto=>{
-        //         if(isInCart(items)){
-        //             // let array2 = cartList.map(producto=>{
-        //                 if(isInCart(items)){
-        //                     return({...producto,cantidad:10}) 
-        //                 }else{
-        //                     return(producto)
-        //                 }
-        //             // })
-        //             // setCartList(array2)
-        //         //     console.log('se actualizo la canridad de', producto.name)
-        //         //     let cantidadNueva = producto.cantidad + items.cantidad
-        //         //     console.log('cantidad nueva', cantidadNueva)
-        //         //  return({...producto})
-        //         // console.log('el id es:',producto.id)
-        //         // }
-        //         // else{
-        //         //     console.log('el id es:',producto.id)
-        //         //     // console.log('se dejó igual a:', producto.name)
-        //         //     // return({...producto})
-        //         // }
-        //         }
-        //     })
-        //     setCartList(array3)
-        //         }else{
-        //             console.log('se agregó un producto que no estaba en cart', items.name)
-        //             setCartList([...cartList,{...items}])
-        //         }
-        //     // })
-        // }
-        const productoAModificar =cartList.find(producto=>producto.id === items.id)
-        const productosQueQuedan =cartList.filter(producto=>producto.id !== items.id)
-        if(productoAModificar){
-            const cantidadVieja = productoAModificar.cantidad
-            let cantidadNueva = cantidadVieja + items.cantidad
-        
-            let array = [...productosQueQuedan, {...productoAModificar, cantidad: cantidadNueva}]
-            setCartList(array)
-            
+        if(isInCart(items)){
+            let nuevoArray = []
+            cartList.forEach(
+                producto=>
+                    isInCart(items)?
+                        nuevoArray.push({...producto,cantidad:producto.cantidad+items.cantidad})
+                    :
+                    nuevoArray.push({producto})
+            )
+            setCartList(nuevoArray)
         }
+
+
+        // const productoAModificar =cartList.find(producto=>producto.id === items.id)
+        // const productosQueQuedan =cartList.filter(producto=>producto.id !== items.id)
+        // if(productoAModificar){
+        //     const cantidadVieja = productoAModificar.cantidad
+        //     let cantidadNueva = cantidadVieja + items.cantidad
+        
+        //     let array = [...productosQueQuedan, {...productoAModificar, cantidad: cantidadNueva}]
+        //     setCartList(array)
+            
+        // }
         else{
             setCartList([...cartList, items])
             console.log('un producto que no estaba');

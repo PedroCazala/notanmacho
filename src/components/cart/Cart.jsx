@@ -17,8 +17,7 @@ function Cart() {
     let orden = {}
     // const [productosTerminarCompra,setProductosTerminarCompra] = useState([])
     // const [pedido,setPedido] = useState({})
-    const terminarCompra = async(e) =>{
-        e.preventDefault()
+    const terminarCompra = async() =>{
         orden.buyer = dataForm;
         orden.total= totalCart;
 
@@ -44,7 +43,8 @@ function Cart() {
         .finally(setDataForm({
             name:'',
             phone:'',
-            email:''
+            email:'',
+            emailConfirm:''
         }))
         }
 
@@ -56,7 +56,16 @@ function Cart() {
             [e.target.name]:e.target.value
         })
     }
-    console.log(dataForm)
+    const validacion = (e)=>{
+        e.preventDefault()
+        if(dataForm.email !== dataForm.emailConfirm){
+            alert('El email no councide, por favor ingreselos nuevamente')
+            setDataForm({
+                ...dataForm,
+                emailConfirm:''
+            })
+        }else{terminarCompra()}
+    }
     return (
         <div>
             {cartList[0] ?
@@ -73,40 +82,45 @@ function Cart() {
                             <div>{totalCart}</div>
                             <button className='boton1 btnVaciarCarrito' onClick={vaciarCarrito}>Vaciar carrito</button>
                             <form
-                                // onSubmit={realizarCompra}
+                                onSubmit={validacion}
                             >
                                 
                                 <input 
+                                    required
                                     type="text"
                                     name='name'
-                                    placeholder='Nombre'
+                                    placeholder='Nombre*'
                                     onChange={handleChange}
                                     value={dataForm.name}
                                 /><br/>
                                 <input 
+                                    required
                                     type="email"
                                     name='email'
-                                    placeholder='e-mail'
+                                    placeholder='e-mail *'
                                     onChange={handleChange}
                                     value={dataForm.email}
                                 /><br/>
-                                {/* <input 
+                                <input 
+                                    required
                                     type="email"
                                     name='emailConfirm'
-                                    placeholder='Confirme su e-mail'
+                                    placeholder='Confirme su e-mail*'
+                                    value={dataForm.emailConfirm}
                                     onChange={handleChange}
                                     //value=
-                                /><br/> */}
+                                /><br/> 
                                 <input 
+                                    required
                                     type="phone"
                                     name='phone'
-                                    placeholder='Telefono'
+                                    placeholder='Telefono*'
                                     onChange={handleChange}
                                     value={dataForm.phone}
                                 /><br/>
 
+                                <button className='boton1 ' /*onClick={terminarCompra}*/>Terminar compra</button>
                             </form>
-                            <button className='boton1 ' onClick={terminarCompra}>Terminar compra</button>
                         </div>
                     }
                 </>
