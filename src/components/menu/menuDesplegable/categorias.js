@@ -15,7 +15,7 @@ export const categorias = [
     ]
 },
 {
-    categoria:'Calsado',
+    categoria:'Calzado',
     subcategorias:[
         'Zapatillas',
         'Zapatos',

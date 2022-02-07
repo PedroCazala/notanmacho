@@ -9,27 +9,17 @@ import {collection, getDocs, getFirestore, query, where} from 'firebase/firestor
 function ItemListContainer({greeting}) {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
-    
-    // const [filtro,setFiltro]=useState()
 
-    // const {categoria} = useParams()
+    const {categoria} = useParams()
     const {subcategoria} = useParams()
 
-    // const modificaFiltro =()=>{
-    //     if(subcategoria){
-    //         setFiltro(subcategoria)
-    //     }else if(categoria){
-    //         setFiltro(categoria)
-    //     }else{
-    //         setFiltro('undefined')
-    //     }
-    // }
+
     useEffect(()=>{
 
         const db = getFirestore()
 
         if(subcategoria){
-            // modificaFiltro()
+            // modificaFiltro('subcategoria')
             const queryCollection = query( collection(db,'items'),
             where('subcategory','==',subcategoria.toLocaleLowerCase()))
             // (!subcategoria)&& where('category','==',subcategoria.toLocaleLowerCase())
@@ -37,16 +27,24 @@ function ItemListContainer({greeting}) {
             .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
             .catch(err=>err)
             .finally(setLoading(false))
-        }else{
-            // modificaFiltro()
+        }
+        else if(categoria){
+            const queryCollection = query( collection(db,'items'),
+            where('category','==',categoria.toLocaleLowerCase()))
+            getDocs(queryCollection)
+            .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
+            .catch(err=>err)
+            .finally(setLoading(false))
+        }
+        else{
             const queryCollection = query( collection(db,'items'))
             getDocs(queryCollection)
             .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
             .catch(err=>err)
             .finally(setLoading(false))
         }
-    },[subcategoria])
-    // console.log('filtro',filtro);
+    },[subcategoria ? subcategoria: categoria])
+
     return (
         <div>
             <center><h1>
