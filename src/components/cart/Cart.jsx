@@ -101,17 +101,17 @@ function Cart() {
                 </>
             :
                 <>
-                    {(idOrder && prosesingOrder) ?
-                        <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
-                        // <>
-                        //     {idOrder ?
-                        //         <GeneratedOrder idOrder={idOrder} key={idOrder}/>
-                        //     :   
-                        //     <div><img src={loadingImg} alt="Rueda de cargando" />
-                        //         {/* <button onClick={aceptar}>Aceptar</button> */}
-                        //     </div>
-                        // }
-                        // </>
+                    {(prosesingOrder) ?
+                        // <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
+                        <>
+                            {idOrder ?
+                                <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
+                            :   
+                            <div><img src={loadingImg} alt="Rueda de cargando" />
+                                {/* <button onClick={aceptar}>Aceptar</button> */}
+                            </div>
+                        }
+                        </>
                     :
                         <div className='noHayProductosEnElCarrito'>
                             {/* {idOrder} */}
