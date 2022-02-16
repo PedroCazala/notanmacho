@@ -23,7 +23,7 @@ function ItemCount({stock, initial, cantidadEnDetail}) {
             {cantidadEnDetail &&
                 <>
                     <p>(Disponibles {stock})</p>
-                    <button className='boton2' onClick={()=>cantidadEnDetail(contador)}>Agregar al carrito</button>
+                    {stock >= 1 && <button className='boton2' onClick={()=>cantidadEnDetail(contador)}>Agregar al carrito</button>}
                 </>
             }
         </div>

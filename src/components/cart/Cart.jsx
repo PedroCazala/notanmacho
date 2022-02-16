@@ -22,14 +22,12 @@ function Cart() {
     const [idOrder,setIdOrder]=useState('')
     const [loading, setLoading] = useState(false)
 
-
-
     let orden = {}
 
     const continueShopping =()=>{
         setShowForm(!showForm)
     }
-    const terminarCompra = async() =>{
+    const finishBuying = async() =>{
         orden.buyer = dataForm;
         orden.total= totalCart;
 
@@ -78,7 +76,7 @@ function Cart() {
                 ...dataForm,
                 emailConfirm:''
             })
-        }else{terminarCompra()}
+        }else{finishBuying()}
     }
     const acceptOrderSummary=()=>{
         setLoading(false)

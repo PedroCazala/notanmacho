@@ -8,7 +8,7 @@ function ItemCart({producto}) {
     const {eliminarItemDelCarrito} = useCartContext()
     return (
         <div  className='itemCart'>
-            <img src={producto.img1} alt={producto.name}/>
+            <img src={producto.img} alt={producto.name}/>
             <div className='contenido'>
                 <div className='titulo'>{producto.name}</div>
                 <div className='precio'>${producto.price}</div>

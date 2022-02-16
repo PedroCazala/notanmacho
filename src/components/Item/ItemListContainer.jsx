@@ -43,7 +43,11 @@ function ItemListContainer({greeting}) {
     return (
         <div>
             <center><h1>
-                {greeting}
+                {subcategoria? subcategoria:
+                <>{
+                    categoria ? categoria:'No Tan MACHO'
+                }</>
+                }
             </h1></center>
             {loading ? <img src={loadingImg} alt="Rueda de cargando" />
             :

@@ -14,10 +14,10 @@ function App() {
     <BrowserRouter className="App">
       <Menu/>
       <Routes>
-        <Route exact  path='/' element={<ItemListContainer greeting="Hola soy Item List Container"/>}/>
-        <Route exact  path='/categoria' element={<ItemListContainer greeting="Esto es una Categoria"/>}/>
-        <Route exact  path='/categoria/:categoria' element={<ItemListContainer greeting="Esto es una Categoria"/>}/>
-        <Route exact  path='/categoria/:categoria/:subcategoria' element={<ItemListContainer greeting="Esto es una subcategoria"/>}/>
+        <Route exact  path='/' element={<ItemListContainer/>}/>
+        <Route exact  path='/categoria' element={<ItemListContainer/>}/>
+        <Route exact  path='/categoria/:categoria' element={<ItemListContainer/>}/>
+        <Route exact  path='/categoria/:categoria/:subcategoria' element={<ItemListContainer/>}/>
         
         <Route exact path='/detalle/:idDetalle'element={<ItemDetailContainer/>}/>
         

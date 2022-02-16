@@ -19,7 +19,7 @@ function ItemDetail({producto}) {
                 <h1>{producto.name}</h1>
             </div>
             <div className='imagen'>
-                <img src={producto.img1} alt={producto.name}/>
+                <img src={producto.img} alt={producto.name}/>
             </div>
             <div className='aside'>
                 <h2>${producto.price}</h2>
