@@ -1,8 +1,7 @@
-import React, { useContext,useState } from 'react'
-import { CartContext } from '../../context/cartContext'
+import React, { useState } from 'react'
+import { useCartContext } from '../../context/cartContext'
 import './cart.scss'
 import { collection, addDoc, getFirestore} from 'firebase/firestore'
-// import {doc, getDoc, getFirestore} from 'firebase/firestore'
 import { Link } from 'react-router-dom'
 import CartList from './CartList'
 import CartForm from './CartForm'
@@ -11,6 +10,8 @@ import loadingImg from '../../assets/images/logos/loading_gif.gif'
 
 
 function Cart() {
+    const {cartList, totalCart, vaciarCarrito,sumarTotalCart} = useCartContext()
+    
     const [dataForm,setDataForm]=useState({
         name:'',
         phone:'',
@@ -19,10 +20,12 @@ function Cart() {
     })
     const [showForm, setShowForm] = useState(false)
     const [idOrder,setIdOrder]=useState('')
-    const [prosesingOrder, setProsesingOrder] = useState(false)
-    
-    const {cartList, totalCart, vaciarCarrito,sumarTotalCart} = useContext(CartContext)
+    const [loading, setLoading] = useState(false)
+
+
+
     let orden = {}
+
     const continueShopping =()=>{
         setShowForm(!showForm)
     }
@@ -55,7 +58,7 @@ function Cart() {
         .finally(
             setShowForm(false),
             vaciarCarrito(),
-            setProsesingOrder(true)
+            setLoading(true)
         )
     }
 
@@ -67,7 +70,7 @@ function Cart() {
         })
     }
 
-    const validacion = (e)=>{
+    const validation = (e)=>{
         e.preventDefault()
         if(dataForm.email !== dataForm.emailConfirm){
             alert('El email no councide, por favor ingreselos nuevamente')
@@ -78,8 +81,9 @@ function Cart() {
         }else{terminarCompra()}
     }
     const acceptOrderSummary=()=>{
-        setProsesingOrder(false)
+        setLoading(false)
     }
+
     return (
         <div>
             {cartList[0] ?
@@ -96,35 +100,29 @@ function Cart() {
                             </div>
                         </>
                     :   
-                        <CartForm dataForm={dataForm}validacion={(e)=>validacion(e)} handleChange={handleChange}/>
+                        <CartForm dataForm={dataForm}validation={(e)=>validation(e)} handleChange={handleChange}/>
                     }
                 </>
             :
                 <>
-                    {(prosesingOrder) ?
+                    {(loading) ?
                         // <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
                         <>
                             {idOrder ?
                                 <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
                             :   
-                            <div><img src={loadingImg} alt="Rueda de cargando" />
-                                {/* <button onClick={aceptar}>Aceptar</button> */}
-                            </div>
+                            <div><img src={loadingImg} alt="Rueda de cargando" /></div>
                         }
                         </>
                     :
-                        <div className='noHayProductosEnElCarrito'>
-                            {/* {idOrder} */}
+                        <div className='nothingInCart'>
                             <p>No hay porductos en el carrito</p>
                             <p>Ir a la pagina de inicio:</p>
                             <Link to='/' className='logo-notanmacho'>No Tan MACHO</Link>
-                            {/* {console.log(idOrder)} */}
-                            {/* <GeneratedOrder idOrder={idOrder} key={idOrder}/> */}
                         </div>
                     }
                 </>
             }
-            
         </div>
     )
 }

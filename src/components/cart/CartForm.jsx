@@ -1,10 +1,10 @@
 import React from 'react';
 
-function CartForm({dataForm,validacion, handleChange}) {
+function CartForm({dataForm,validation, handleChange}) {
 
     return <div className={'cartForm'}>
         <form
-            onSubmit={validacion}
+            onSubmit={validation}
         >
             
             <input 

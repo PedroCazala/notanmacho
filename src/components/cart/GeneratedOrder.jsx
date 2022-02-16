@@ -2,26 +2,10 @@ import React, { useEffect, useState } from 'react'
 import {doc, getDoc, getFirestore} from 'firebase/firestore'
 
 function OrderGenerated({idOrder,acceptOrderSummary}) {
-    const [order, setOrder] = useState({
-        total:'',
-        buyer:{
-            name:'',
-            email:'',
-            phone:''
-        },
-        items:[{
-            id:'', 
-            name:'',
-            price:'',
-            cantidad:'',
-            totalPrice:''
-        }]
-    })
-
+    const [order, setOrder] = useState({})
     const [show,setShow] =useState(false)
-    // const [prosesingOrder, setProsesingOrder] = useState(true)
+
     useEffect(()=>{
-        console.log(idOrder)
         const db = getFirestore()
         const queryOrder = doc(db, 'ordenes', idOrder)
         getDoc(queryOrder)
@@ -33,12 +17,12 @@ function OrderGenerated({idOrder,acceptOrderSummary}) {
     return (
         <div>
             {show &&
-                <div className='generatedOrder'>
+                (<div className='generatedOrder'>
                     <h1>Pedido realizado con exito</h1>
                     <div>Orden n° {order.id}</div>
-                    <div>Usuario: {order.buyer.name}</div>
-                    <div>e-mail: {order.buyer.email}</div>
-                    <div>Teléfono: {order.buyer.phone}</div>
+                    <div>Usuario: {order?.buyer?.name}</div>
+                    <div>e-mail: {order?.buyer?.email}</div>
+                    <div>Teléfono: {order?.buyer?.phone}</div>
                     <table>
                         <thead>
                             <tr>
@@ -49,19 +33,19 @@ function OrderGenerated({idOrder,acceptOrderSummary}) {
                             </tr>
                         </thead>
                         <tbody>
-                            {order.items.map(product=>{
+                            {order?.items?.map(product=>{
                                 return (<tr key={product.id}>
                                     <td>{product.name}</td>
                                     <td>{product.cantidad}</td>
-                                    <td>{product.price}</td>
-                                    <td>{product.cantidad * product.price}</td>
+                                    <td>${product.price}</td>
+                                    <td>${product.cantidad * product.price}</td>
                                 </tr>)
                             })}
                         </tbody>
                     </table>
-                    <div>Monto total: {order.total}</div>
-                    <button onClick={acceptOrderSummary}>Aceptar</button>
-                </div>
+                    <div>Monto total: ${order.total}</div>
+                    <button onClick={acceptOrderSummary} className='boton1'>Aceptar</button>
+                </div>)
             }
         </div>
     )
