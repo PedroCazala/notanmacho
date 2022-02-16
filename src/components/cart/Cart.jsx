@@ -78,7 +78,7 @@ function Cart() {
         }else{terminarCompra()}
     }
     const acceptOrderSummary=()=>{
-        alert('sisi claro que si')
+        alert('Cambiar el seteo, para que desapareca el resumen')
     }
     return (
         <div>
