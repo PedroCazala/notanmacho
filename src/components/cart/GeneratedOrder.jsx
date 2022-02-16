@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import {doc, getDoc, getFirestore} from 'firebase/firestore'
 import loadingImg from '../../assets/images/logos/loading_gif.gif'
 function OrderGenerated({idOrder}) {
-    // const [order, setOrder] = useState({})
+    const [order, setOrder] = useState({})
     const [prosesingOrder, setProsesingOrder] = useState(true)
-    // useEffect(()=>{
-    //     const db = getFirestore()
-    //     const queryOrder = doc(db, 'ordenes', idOrder)
-    //     getDoc(queryOrder)
-    //     .then(res=>setOrder({id:res.id, ...res.data()}))
-    //     .catch(err=>console.log(err))
-    //     // .finally(setProsesingOrder(false))
-    // },[idOrder])
+    useEffect(()=>{
+        const db = getFirestore()
+        const queryOrder = doc(db, 'ordenes', idOrder)
+        getDoc(queryOrder)
+        .then(res=>setOrder({id:res.id, ...res.data()}))
+        .catch(err=>console.log(err))
+        // .finally(setProsesingOrder(false))
+    },[idOrder])
 
     const aceptar=()=>{
         setProsesingOrder(!prosesingOrder)
@@ -26,12 +26,12 @@ function OrderGenerated({idOrder}) {
                 <div >
                     <div>Pedido realizado con exito</div>
                     <div>Su numero de orden es:</div>
-                    {/* <div>{order.total}</div>
-                    <div>email: {order.buyer.email}</div> */}
+                    <div>{order.total}</div>
+                    <div>email: {order.buyer.email}</div>
                     <button onClick={aceptar}>Aceptar</button>
-                    {/* <div>{order.total}</div>
+                    <div>{order.total}</div>
                     <div>{order.buyer.email}</div>
-                    <div>{order.buyer.name}</div> */}
+                    <div>{order.buyer.name}</div>
                     {/* <table>
                         <thead>
                             <tr>
