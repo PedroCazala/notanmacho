@@ -78,7 +78,7 @@ function Cart() {
         }else{terminarCompra()}
     }
     const acceptOrderSummary=()=>{
-        alert('Cambiar el seteo, para que desapareca el resumen')
+        setProsesingOrder(false)
     }
     return (
         <div>
