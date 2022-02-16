@@ -1,38 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import {doc, getDoc, getFirestore} from 'firebase/firestore'
-import loadingImg from '../../assets/images/logos/loading_gif.gif'
-function OrderGenerated({idOrder}) {
-    const [order, setOrder] = useState({})
-    const [prosesingOrder, setProsesingOrder] = useState(true)
+
+function OrderGenerated({idOrder,acceptOrderSummary}) {
+    const [order, setOrder] = useState({
+        total:'',
+        buyer:{
+            name:'',
+            email:'',
+            phone:''
+        },
+        items:[{
+            id:'', 
+            name:'',
+            price:'',
+            cantidad:'',
+            totalPrice:''
+        }]
+    })
+
+    const [show,setShow] =useState(false)
+    // const [prosesingOrder, setProsesingOrder] = useState(true)
     useEffect(()=>{
+        console.log(idOrder)
         const db = getFirestore()
         const queryOrder = doc(db, 'ordenes', idOrder)
         getDoc(queryOrder)
         .then(res=>setOrder({id:res.id, ...res.data()}))
         .catch(err=>console.log(err))
-        // .finally(setProsesingOrder(false))
+        .finally(setShow(true))
     },[idOrder])
 
-    const aceptar=()=>{
-        setProsesingOrder(!prosesingOrder)
-    }
     return (
         <div>
-            {(prosesingOrder === true) ?
-                <div><img src={loadingImg} alt="Rueda de cargando" />
-                    <button onClick={aceptar}>Aceptar</button>
-                </div>
-            :
-                <div >
-                    <div>Pedido realizado con exito</div>
-                    <div>Su numero de orden es:</div>
-                    <div>{order.total}</div>
-                    <div>email: {order.buyer.email}</div>
-                    <button onClick={aceptar}>Aceptar</button>
-                    <div>{order.total}</div>
-                    <div>{order.buyer.email}</div>
-                    <div>{order.buyer.name}</div>
-                    {/* <table>
+            {show &&
+                <div className='generatedOrder'>
+                    <h1>Pedido realizado con exito</h1>
+                    <div>Orden n° {order.id}</div>
+                    <div>Usuario: {order.buyer.name}</div>
+                    <div>e-mail: {order.buyer.email}</div>
+                    <div>Teléfono: {order.buyer.phone}</div>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Producto</th>
@@ -43,24 +50,19 @@ function OrderGenerated({idOrder}) {
                         </thead>
                         <tbody>
                             {order.items.map(product=>{
-                                <tr key={product.id}>
-                                    <th>{product.name}</th>
-                                    <th>{product.cantidad}</th>
-                                    <th>{product.price}</th>
-                                    <th>{product.cantidad * product.price}</th>
-                                </tr>
-                            }
-                            )}
-                            <tr>
-                                <th>lala</th>
-                                <th>lala</th>
-                                <th>lala</th>
-                                <th>lala</th>
-                            </tr>
+                                return (<tr key={product.id}>
+                                    <td>{product.name}</td>
+                                    <td>{product.cantidad}</td>
+                                    <td>{product.price}</td>
+                                    <td>{product.cantidad * product.price}</td>
+                                </tr>)
+                            })}
                         </tbody>
-                    </table> */}
+                    </table>
+                    <div>Monto total: {order.total}</div>
+                    <button onClick={acceptOrderSummary}>Aceptar</button>
                 </div>
-                }
+            }
         </div>
     )
 }

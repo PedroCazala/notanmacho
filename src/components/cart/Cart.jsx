@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import CartList from './CartList'
 import CartForm from './CartForm'
 import GeneratedOrder from './GeneratedOrder'
+import loadingImg from '../../assets/images/logos/loading_gif.gif'
 
 
 function Cart() {
@@ -76,6 +77,9 @@ function Cart() {
             })
         }else{terminarCompra()}
     }
+    const acceptOrderSummary=()=>{
+        alert('sisi claro que si')
+    }
     return (
         <div>
             {cartList[0] ?
@@ -97,15 +101,24 @@ function Cart() {
                 </>
             :
                 <>
-                    {prosesingOrder ?
-                        <GeneratedOrder idOrder={idOrder}key={idOrder}/>
+                    {(idOrder && prosesingOrder) ?
+                        <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
+                        // <>
+                        //     {idOrder ?
+                        //         <GeneratedOrder idOrder={idOrder} key={idOrder}/>
+                        //     :   
+                        //     <div><img src={loadingImg} alt="Rueda de cargando" />
+                        //         {/* <button onClick={aceptar}>Aceptar</button> */}
+                        //     </div>
+                        // }
+                        // </>
                     :
                         <div className='noHayProductosEnElCarrito'>
-                            {idOrder}
+                            {/* {idOrder} */}
                             <p>No hay porductos en el carrito</p>
                             <p>Ir a la pagina de inicio:</p>
                             <Link to='/' className='logo-notanmacho'>No Tan MACHO</Link>
-                            {console.log(idOrder)}
+                            {/* {console.log(idOrder)} */}
                             {/* <GeneratedOrder idOrder={idOrder} key={idOrder}/> */}
                         </div>
                     }

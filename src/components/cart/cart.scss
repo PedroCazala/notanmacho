@@ -44,3 +44,18 @@
         padding: 15px;
     }
 }
+
+.generatedOrder{
+    margin:auto;
+    display: flex;
+    flex-flow:column wrap;
+    *{
+        margin: auto;
+    }
+    table{
+        border: 1px red solid;
+        tr{
+            border: 1px red solid;
+        }
+    }
+}
