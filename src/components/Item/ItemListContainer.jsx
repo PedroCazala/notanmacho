@@ -1,5 +1,4 @@
 import {React,useEffect,useState} from 'react'
-// import { getFetch } from '../../helpers/mock'
 import ItemList from './ItemList'
 import loadingImg from '../../assets/images/logos/loading_gif.gif'
 import { useParams } from 'react-router-dom';
@@ -12,17 +11,13 @@ function ItemListContainer({greeting}) {
 
     const {categoria} = useParams()
     const {subcategoria} = useParams()
-
+    const filtro = subcategoria ? subcategoria: categoria;
 
     useEffect(()=>{
-
         const db = getFirestore()
-
         if(subcategoria){
-            // modificaFiltro('subcategoria')
             const queryCollection = query( collection(db,'items'),
             where('subcategory','==',subcategoria.toLocaleLowerCase()))
-            // (!subcategoria)&& where('category','==',subcategoria.toLocaleLowerCase())
             getDocs(queryCollection)
             .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
             .catch(err=>err)
@@ -43,7 +38,7 @@ function ItemListContainer({greeting}) {
             .catch(err=>err)
             .finally(setLoading(false))
         }
-    },[subcategoria ? subcategoria: categoria])
+    },[filtro])
 
     return (
         <div>

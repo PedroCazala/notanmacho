@@ -1,7 +1,5 @@
-import React from 'react'
-import {useState} from 'react'
+import React,{useState} from 'react'
 import { useCartContext } from '../../context/cartContext';
-// import './itemCount.scss'
 
 function ItemCount({producto}) {
     const{modificarEnCarrito} = useCartContext()

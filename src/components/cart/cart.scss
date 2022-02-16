@@ -4,8 +4,26 @@
     flex-flow: column wrap;
     justify-content: center;
     div,button{
-        margin: auto;
+        text-align: center;
     }
+}
+.cartForm{
+    // background-color: grey;
+    text-align: center;
+    height: 90vh;
+    padding: 20px;
+    form{
+        margin: auto;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+        input{
+            font-size:1.7rem;
+        }
+    }
+
+
 }
 .noHayProductosEnElCarrito{
     display: flex;

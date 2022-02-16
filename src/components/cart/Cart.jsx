@@ -1,61 +1,71 @@
 import React, { useContext,useState } from 'react'
 import { CartContext } from '../../context/cartContext'
-import ItemCart from './ItemCart'
 import './cart.scss'
 import { collection, addDoc, getFirestore} from 'firebase/firestore'
+// import {doc, getDoc, getFirestore} from 'firebase/firestore'
 import { Link } from 'react-router-dom'
+import CartList from './CartList'
+import CartForm from './CartForm'
+import GeneratedOrder from './GeneratedOrder'
 
 
 function Cart() {
     const [dataForm,setDataForm]=useState({
         name:'',
         phone:'',
-        email:''
+        email:'',
+        emailConfirm:''
     })
+    const [showForm, setShowForm] = useState(false)
+    const [idOrder,setIdOrder]=useState('')
+    const [prosesingOrder, setProsesingOrder] = useState(false)
+    
     const {cartList, totalCart, vaciarCarrito,sumarTotalCart} = useContext(CartContext)
-    // console.log('cartList',cartList)
     let orden = {}
-    // const [productosTerminarCompra,setProductosTerminarCompra] = useState([])
-    // const [pedido,setPedido] = useState({})
+    const continueShopping =()=>{
+        setShowForm(!showForm)
+    }
     const terminarCompra = async() =>{
         orden.buyer = dataForm;
         orden.total= totalCart;
 
-        orden. items = cartList.map(producto => {
-            // setProductosTerminarCompra([...productosTerminarCompra,{
-                let id = producto.id
-                let name = producto.name
-                let price = producto.price
-                let cantidad= producto.cantidad
-                let totalPrice= producto.price*producto.cantidad
-                return{id, name, price, cantidad, totalPrice}
-            // }])
+        orden.items = cartList.map(producto => {
+            let id = producto.id
+            let name = producto.name
+            let price = producto.price
+            let cantidad= producto.cantidad
+            let totalPrice= producto.price*producto.cantidad
+            return{id, name, price, cantidad, totalPrice}
         })
-
-        // console.log(productosTerminarCompra)
-        // setPedido({buyer, productosTerminarCompra, totalCart})
-        console.log(orden)
+        //Guardar la orden en Firestore
         const db =getFirestore()
         const ordenCollection= collection(db, 'ordenes')
         await addDoc(ordenCollection, orden)
-        .then(resp=>console.log(resp))
+        .then(res=>setIdOrder(res.id))
+        .then(
+            setDataForm({
+                name:'',
+                phone:'',
+                email:'',
+                emailConfirm:''
+            })
+        )
         .catch(err=>console.log(err))
-        .finally(setDataForm({
-            name:'',
-            phone:'',
-            email:'',
-            emailConfirm:''
-        }))
-        }
+        .finally(
+            setShowForm(false),
+            vaciarCarrito(),
+            setProsesingOrder(true)
+        )
+    }
 
     const handleChange =(e)=>{
-        // console.log('cambio', e.target.name);
-        // console.log('cambio', e.target.value);
+        e.preventDefault()
         setDataForm({
             ...dataForm,
             [e.target.name]:e.target.value
         })
     }
+
     const validacion = (e)=>{
         e.preventDefault()
         if(dataForm.email !== dataForm.emailConfirm){
@@ -70,67 +80,38 @@ function Cart() {
         <div>
             {cartList[0] ?
                 <>
-                    {cartList.map(producto=>{
-                        return(
-                            <ItemCart producto={producto} key={`cart${producto.id}`}/>
-                        )
-                    })}
-                    {cartList[0] &&
-                        <div className='pieDeCart'>
-                            <div>Precio total: </div>
-                            {sumarTotalCart()}
-                            <div>{totalCart}</div>
-                            <button className='boton1 btnVaciarCarrito' onClick={vaciarCarrito}>Vaciar carrito</button>
-                            <form
-                                onSubmit={validacion}
-                            >
-                                
-                                <input 
-                                    required
-                                    type="text"
-                                    name='name'
-                                    placeholder='Nombre*'
-                                    onChange={handleChange}
-                                    value={dataForm.name}
-                                /><br/>
-                                <input 
-                                    required
-                                    type="email"
-                                    name='email'
-                                    placeholder='e-mail *'
-                                    onChange={handleChange}
-                                    value={dataForm.email}
-                                /><br/>
-                                <input 
-                                    required
-                                    type="email"
-                                    name='emailConfirm'
-                                    placeholder='Confirme su e-mail*'
-                                    value={dataForm.emailConfirm}
-                                    onChange={handleChange}
-                                    //value=
-                                /><br/> 
-                                <input 
-                                    required
-                                    type="phone"
-                                    name='phone'
-                                    placeholder='Telefono*'
-                                    onChange={handleChange}
-                                    value={dataForm.phone}
-                                /><br/>
-
-                                <button className='boton1 ' /*onClick={terminarCompra}*/>Terminar compra</button>
-                            </form>
-                        </div>
+                    {showForm === false ?
+                        <>
+                            <CartList/>
+                            <div className='pieDeCart'>
+                                <div>Precio total: </div>
+                                {sumarTotalCart()}
+                                <div>{totalCart}</div>
+                                <button className='boton1 btnVaciarCarrito' onClick={vaciarCarrito}>Vaciar carrito</button>
+                                <button className='boton1' onClick={continueShopping}>Continuar compra</button>
+                            </div>
+                        </>
+                    :   
+                        <CartForm dataForm={dataForm}validacion={(e)=>validacion(e)} handleChange={handleChange}/>
                     }
                 </>
             :
-            <div className='noHayProductosEnElCarrito'>
-                <p>No hay porductos en el carrito</p>
-                <p>Ir a la pagina de inicio:</p>
-                <Link to='/' className='logo-notanmacho'>No Tan MACHO</Link>
-            </div>
+                <>
+                    {prosesingOrder ?
+                        <GeneratedOrder idOrder={idOrder}key={idOrder}/>
+                    :
+                        <div className='noHayProductosEnElCarrito'>
+                            {idOrder}
+                            <p>No hay porductos en el carrito</p>
+                            <p>Ir a la pagina de inicio:</p>
+                            <Link to='/' className='logo-notanmacho'>No Tan MACHO</Link>
+                            {console.log(idOrder)}
+                            {/* <GeneratedOrder idOrder={idOrder} key={idOrder}/> */}
+                        </div>
+                    }
+                </>
             }
+            
         </div>
     )
 }
