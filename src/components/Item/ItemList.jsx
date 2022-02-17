@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Item from './Item'
-// import ItemListContainer from '../ItemListContainer/ItemListContainer'
-
 
 function ItemList({products}) {
     return (

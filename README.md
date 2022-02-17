@@ -40,11 +40,12 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 # No tan macho por Pedro Cazalá
-No tan macho es un e-comerce
+No tan macho es un e-comerce, que provee de ropa a hombres que buscan salir de lo convencional y quieren romper con lo establecido.
+El proyecto está en procezo y se está realizando con la libreria `React`.
 ## Librerias/dependencias utilizadas
 
 |                |Version                        |Uso                          |
 |----------------|-------------------------------|-----------------------------|
-|firebase        |`"^9.6.4"`                     |Utilizamos Firestore de Firebase para realizae el Backend. Allí almacenamos nuestros datos sobre los productos que se venderan en el e-comerce|
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+|firebase        |`"^9.6.4"`                     |Utilizamos Firestore de Firebase para realizae el Backend. Allí almacenamos nuestros datos sobre los productos que se venderan en el e-comerce y enviamos las ordenes que los usuarios realizan en la misma|
+|SASS            |`^7.0.1`                       |SASS es el procesador css que utilizamos para darle estilos al sitio|
+|react-router-dom|`^6.2.1`                       |Utilizamos React-router-dom, para poder navegar a traves de nuestra SPA|
