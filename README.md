@@ -49,3 +49,6 @@ El proyecto está en procezo y se está realizando con la libreria `React`.
 |firebase        |`"^9.6.4"`                     |Utilizamos Firestore de Firebase para realizae el Backend. Allí almacenamos nuestros datos sobre los productos que se venderan en el e-comerce y enviamos las ordenes que los usuarios realizan en la misma|
 |SASS            |`^7.0.1`                       |SASS es el procesador css que utilizamos para darle estilos al sitio|
 |react-router-dom|`^6.2.1`                       |Utilizamos React-router-dom, para poder navegar a traves de nuestra SPA|
+
+##Demo
+[Demo: notanmacho](https://notanmacho.netlify.app/)
