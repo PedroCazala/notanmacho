@@ -6,7 +6,7 @@ import { doc, getDoc, getFirestore} from 'firebase/firestore'
 
 
 function ItemDetailContainer() {
-    const [producto, setProducto]= useState({})
+    const [product, setProduct]= useState({})
     const [loading, setLoading] = useState(true)
 
     const {idDetalle} = useParams()
@@ -15,7 +15,7 @@ function ItemDetailContainer() {
         const db = getFirestore()
         const queryProd = doc(db, 'items', idDetalle)
         getDoc(queryProd)
-        .then(res=>setProducto({id: res.id, ...res.data()}))
+        .then(res=>setProduct({id: res.id, ...res.data()}))
         .catch(err=>console.log(err))
         .finally(setLoading(false))
     },[idDetalle])
@@ -24,9 +24,9 @@ function ItemDetailContainer() {
         <div>
             <center>
                 {loading ? <img src={loadingImg} alt="Rueda de cargando" />:
-                <div key={producto.id}>
-                    <h1>{producto.name}</h1>
-                    <ItemDetail producto={producto}/>
+                <div key={product.id}>
+                    <h1>{product.name}</h1>
+                    <ItemDetail product={product}/>
                 </div>}
             </center>
         </div>

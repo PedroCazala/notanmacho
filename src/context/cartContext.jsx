@@ -21,8 +21,8 @@ export const CartContexProvider = ({children})=>{
             let nuevoArray = cartList.map(
                 (producto)=>{
                     if(items.id===producto.id){
-                        let cant=producto.cantidad + items.cantidad
-                        return({...producto,cantidad:cant})
+                        let cant=producto.quantity + items.quantity
+                        return({...producto,quantity:cant})
                     }else{
                         return({...producto})
                     }
@@ -36,13 +36,12 @@ export const CartContexProvider = ({children})=>{
     const modificarEnCarrito = (contador,id)=>{
         let array2 = cartList.map((producto)=>{
             if(producto.id ===id){
-                return {...producto,cantidad:contador}
+                return {...producto,quantity:contador}
             }else{
                 return producto
             }
         })
         setCartList(array2)
-        
     }
 
 
@@ -56,7 +55,7 @@ export const CartContexProvider = ({children})=>{
     }
 
     function sumarTotalCart() {
-        let arrayDeTotales = cartList.map(valor=>valor.price*valor.cantidad)
+        let arrayDeTotales = cartList.map(valor=>valor.price*valor.quantity)
         let total = arrayDeTotales.reduce((a,b)=>a+b)
         setTotalCart(total)
     }

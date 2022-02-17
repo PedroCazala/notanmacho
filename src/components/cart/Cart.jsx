@@ -31,13 +31,13 @@ function Cart() {
         orden.buyer = dataForm;
         orden.total= totalCart;
 
-        orden.items = cartList.map(producto => {
-            let id = producto.id
-            let name = producto.name
-            let price = producto.price
-            let cantidad= producto.cantidad
-            let totalPrice= producto.price*producto.cantidad
-            return{id, name, price, cantidad, totalPrice}
+        orden.items = cartList.map(product => {
+            let id = product.id
+            let name = product.name
+            let price = product.price
+            let quantity= product.quantity
+            let totalPrice= product.price*product.quantity
+            return{id, name, price, quantity, totalPrice}
         })
         //Guardar la orden en Firestore
         const db =getFirestore()
@@ -104,12 +104,11 @@ function Cart() {
             :
                 <>
                     {(loading) ?
-                        // <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
                         <>
                             {idOrder ?
                                 <GeneratedOrder idOrder={idOrder} key={idOrder} acceptOrderSummary={acceptOrderSummary}/>
                             :   
-                            <div><img src={loadingImg} alt="Rueda de cargando" /></div>
+                            <center><img src={loadingImg} alt="Rueda de cargando" /></center>
                         }
                         </>
                     :

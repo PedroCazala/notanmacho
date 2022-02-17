@@ -36,9 +36,9 @@ function OrderGenerated({idOrder,acceptOrderSummary}) {
                             {order?.items?.map(product=>{
                                 return (<tr key={product.id}>
                                     <td>{product.name}</td>
-                                    <td>{product.cantidad}</td>
+                                    <td>{product.quantity}</td>
                                     <td>${product.price}</td>
-                                    <td>${product.cantidad * product.price}</td>
+                                    <td>${product.quantity * product.price}</td>
                                 </tr>)
                             })}
                         </tbody>

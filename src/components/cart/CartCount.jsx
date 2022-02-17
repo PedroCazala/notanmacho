@@ -1,21 +1,21 @@
 import React,{useState} from 'react'
 import { useCartContext } from '../../context/cartContext';
 
-function ItemCount({producto}) {
+function ItemCount({product}) {
     const{modificarEnCarrito} = useCartContext()
-    const [contador, setContador] = useState(producto.cantidad);
+    const [contador, setContador] = useState(product.quantity);
 
 
-    const restar = () =>{
+    const less = () =>{
         if(contador > 1){
-        modificarEnCarrito(contador-1,producto.id)
+        modificarEnCarrito(contador-1,product.id)
         setContador(contador-1)
         }
     }
 
-    const sumar = () =>{
-        if(contador < producto.stock){
-            modificarEnCarrito(contador+1,producto.id)
+    const add = () =>{
+        if(contador < product.stock){
+            modificarEnCarrito(contador+1,product.id)
             setContador(contador+1)
         }else{
             alert('No hay suficientes productos en stock')
@@ -27,8 +27,8 @@ function ItemCount({producto}) {
             {/* <input value={contador} type='number'></input> */}
             <div>{contador}</div>
             <div className='sumarRestar'>
-                <button onClick={restar}>-</button>
-                <button onClick={sumar}>+</button>
+                <button onClick={less}>-</button>
+                <button onClick={add}>+</button>
             </div>
         </div>
     )

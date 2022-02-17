@@ -6,9 +6,9 @@ import ItemCart from './ItemCart';
 function CartList() {
     const {cartList} = useCartContext()
     return(
-        cartList.map(producto=>{
+        cartList.map(product=>{
             return(
-                <ItemCart producto={producto} key={`cart${producto.id}`}/>
+                <ItemCart product={product} key={`cart${product.id}`}/>
             )
         })
     )
