@@ -1,7 +1,7 @@
 import React from 'react'
 import './menuDesplegable.scss'
 
-function MenuDesplegable({contenido}) {
+function DropdownNavbar({contenido}) {
     return (
         <div className='menuDesplegable'>
             {contenido}
@@ -9,4 +9,4 @@ function MenuDesplegable({contenido}) {
     )
 }
 
-export default MenuDesplegable
+export default DropdownNavbar

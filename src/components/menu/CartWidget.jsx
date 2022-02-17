@@ -4,7 +4,7 @@ import { CartContext } from '../../context/cartContext'
 import './cartWidget.scss'
 function CartWidget() {
     const {cartList} = useContext(CartContext)
-    let arrayDeCantidadesTotales = cartList.map(valor=>valor.cantidad)
+    let arrayDeCantidadesTotales = cartList.map(valor=>valor.quantity)
     let total = arrayDeCantidadesTotales.reduce((a,b)=>a+b,0)
     return (
         <div className='cartWidget'>

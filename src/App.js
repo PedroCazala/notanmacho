@@ -1,6 +1,6 @@
 import './App.scss';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Menu from './components/menu/Menu';
+import NavBar from './components/menu/NavBar';
 import ItemListContainer from './components/Item/ItemListContainer';
 import Cart from './components/cart/Cart';
 import ItemDetailContainer from './components/itemDetail/ItemDetailContainer';
@@ -12,7 +12,7 @@ function App() {
       value={[]}>
       
     <BrowserRouter className="App">
-      <Menu/>
+      <NavBar/>
       <Routes>
         <Route exact  path='/' element={<ItemListContainer/>}/>
         <Route exact  path='/categoria' element={<ItemListContainer/>}/>

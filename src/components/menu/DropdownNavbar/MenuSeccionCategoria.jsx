@@ -17,7 +17,7 @@ function MenuSeccionCategoria() {
                             (sub) => {
                                 return(
                                     <li key={sub.replaceAll(' ','-')}>
-                                        <NavLink end /*activeClassName='categoryNameActive'*/ to={`/categoria/${objeto.categoria}/${sub.replaceAll(' ','-')}`}>
+                                        <NavLink end to={`/categoria/${objeto.categoria}/${sub.replaceAll(' ','-')}`}>
                                             {sub}
                                         </NavLink>
                                     </li>

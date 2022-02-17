@@ -12,19 +12,19 @@ export const CartContexProvider = ({children})=>{
     const [totalCart, setTotalCart] =useState(0)
 
     const isInCart =(items)=>{
-        return cartList.some(producto=>producto.id === items.id)
+        return cartList.some(product=>product.id === items.id)
     }
 
 
     const agregarAlCarrito = (items)=>{
         if(isInCart(items)){
             let nuevoArray = cartList.map(
-                (producto)=>{
-                    if(items.id===producto.id){
-                        let cant=producto.quantity + items.quantity
-                        return({...producto,quantity:cant})
+                (product)=>{
+                    if(items.id===product.id){
+                        let cant=product.quantity + items.quantity
+                        return({...product,quantity:cant})
                     }else{
-                        return({...producto})
+                        return({...product})
                     }
             })
             setCartList(nuevoArray)
@@ -34,11 +34,11 @@ export const CartContexProvider = ({children})=>{
     }
     
     const modificarEnCarrito = (contador,id)=>{
-        let array2 = cartList.map((producto)=>{
-            if(producto.id ===id){
-                return {...producto,quantity:contador}
+        let array2 = cartList.map((product)=>{
+            if(product.id ===id){
+                return {...product,quantity:contador}
             }else{
-                return producto
+                return product
             }
         })
         setCartList(array2)
@@ -50,7 +50,7 @@ export const CartContexProvider = ({children})=>{
     }
     
     const eliminarItemDelCarrito = (items)=>{
-        let quedan = cartList.filter(producto=>producto.id !== items.id)
+        let quedan = cartList.filter(product=>product.id !== items.id)
         setCartList(quedan)
     }
 

@@ -4,12 +4,12 @@ import Item from './Item'
 // import ItemListContainer from '../ItemListContainer/ItemListContainer'
 
 
-function ItemList({productos}) {
+function ItemList({products}) {
     return (
         <div className='itemList'>
-            {productos.map(producto=>
-            <Link to={`/detalle/${producto.id}`} key={producto.id}>
-                <Item prod={producto}/>
+            {products.map(product=>
+            <Link to={`/detalle/${product.id}`} key={product.id}>
+                <Item prod={product}/>
             </Link>)}
         </div>
     )

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import {collection, getDocs, getFirestore, query, where} from 'firebase/firestore'
 
 function ItemListContainer({greeting}) {
-    const [productos, setProductos] = useState([]);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const {categoria} = useParams()
@@ -19,7 +19,7 @@ function ItemListContainer({greeting}) {
             const queryCollection = query( collection(db,'items'),
             where('subcategory','==',subcategoria.toLocaleLowerCase()))
             getDocs(queryCollection)
-            .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
+            .then(res=>setProducts( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
             .catch(err=>err)
             .finally(setLoading(false))
         }
@@ -27,14 +27,14 @@ function ItemListContainer({greeting}) {
             const queryCollection = query( collection(db,'items'),
             where('category','==',categoria.toLocaleLowerCase()))
             getDocs(queryCollection)
-            .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
+            .then(res=>setProducts( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
             .catch(err=>err)
             .finally(setLoading(false))
         }
         else{
             const queryCollection = query( collection(db,'items'))
             getDocs(queryCollection)
-            .then(res=>setProductos( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
+            .then(res=>setProducts( res.docs.map(prod=> ({id:prod.id, ...prod.data()}) ) ))
             .catch(err=>err)
             .finally(setLoading(false))
         }
@@ -43,15 +43,15 @@ function ItemListContainer({greeting}) {
     return (
         <div>
             <center><h1>
-                {subcategoria? subcategoria:
+                {subcategoria? subcategoria.replaceAll('-',' '):
                 <>{
-                    categoria ? categoria:'No Tan MACHO'
+                    categoria ? categoria.replaceAll('-',' '):'No Tan MACHO'
                 }</>
                 }
             </h1></center>
             {loading ? <img src={loadingImg} alt="Rueda de cargando" />
             :
-            <ItemList productos={productos}/>}
+            <ItemList products={products}/>}
         </div>
     )
 }

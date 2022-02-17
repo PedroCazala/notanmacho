@@ -1,7 +1,5 @@
 import React from 'react'
-// import { getFetch } from '../../helpers/mock'
 
-// getFetch
 function Item({prod}) {
     return (
         <div className='item'>

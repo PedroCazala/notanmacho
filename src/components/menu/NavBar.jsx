@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CartWidget from './CartWidget'
-import MenuDesplegable from './menuDesplegable/MenuDesplegable'
-import MenuSeccionCategoria from './menuDesplegable/MenuSeccionCategoria'
+import DropdownNavbar from './DropdownNavbar/DropdownNavbar'
+import MenuSeccionCategoria from './DropdownNavbar/MenuSeccionCategoria'
 
 
-function Menu() {
+function NavBar() {
     const [showCategorias, setShowCategorias] =useState(false)
     
     const mostrar = ()=>{
@@ -27,9 +27,9 @@ function Menu() {
                 </nav>
                 <Link to='/carrito' ><CartWidget/></Link>
             </div>
-            {showCategorias && <MenuDesplegable contenido={<MenuSeccionCategoria/>} />}
+            {showCategorias && <DropdownNavbar contenido={<MenuSeccionCategoria/>} />}
         </header>
     )
 }
 
-export default Menu
+export default NavBar
